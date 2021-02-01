@@ -37,7 +37,7 @@ tlsSocket=ssl.wrap_socket(clientSocket)
 
 
 # Info for username and password
-username =  "esrarican17@gmail.com"                    		 #the username for your server
+username =  "someMail@gmail.com"                    		 #the username for your server
 password = "***somepassword***"                              #i changed the password after tests,for submission 
 base64_str = ("\x00"+username+"\x00"+password).encode()
 base64_str = base64.b64encode(base64_str)
