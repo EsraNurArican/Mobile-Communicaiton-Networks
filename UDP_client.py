@@ -1,0 +1,25 @@
+import socket
+import time
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+server_addr = ('localhost', 12000)
+sock.settimeout(1)
+
+try:
+    for i in range(1, 11):
+        start = time.time()     #start time
+        message = 'Ping number: ' + str(i) + " " + time.ctime(start)
+        try:
+            sent = sock.sendto(message, server_addr)
+            print("Sent " + message)
+            data, server = sock.recvfrom(4096)
+            print("Received " + data)
+            end = time.time();     #end time
+            elapsed = end - start  #calculate time
+            print("RTT: " + str(elapsed) + " seconds\n")
+        except socket.timeout:
+            print("Number: " + str(i) + "  Time out!\n")
+
+finally:
+    print("closing socket")
+    sock.close()
